@@ -1,7 +1,5 @@
 package org.example.basic
 
-import kotlin.collections.mutableMapOf
-
 /**
  * 문제
  * 1에서부터 6까지의 눈을 가진 3개의 주사위를 던져서 다음과 같은 규칙에 따라 상금을 받는 게임이 있다.
@@ -20,34 +18,18 @@ import kotlin.collections.mutableMapOf
  * 첫째 줄에 게임의 상금을 출력 한다
  */
 
-fun main() {
-    print("주사위 3개의 눈을 입력하세요 : ")
-    val inputs = readLine()!!.split(" ").map { it.toInt() }
-    println("상금: ${Practice01().getPrize(inputs)}")
+fun main() = with(java.util.Scanner(System.`in`)) {
+    val dice1 = nextInt()
+    val dice2 = nextInt()
+    val dice3 = nextInt()
 
-}
-
-class Practice01 {
-
-    fun getPrize (lots: List<Int>) : Int {
-        var lotMap = mutableMapOf(lots.get(0) to 1)
-        lotMap.put(lots.get(1), lotMap.getOrDefault(lots.get(1), 0) + 1)
-        lotMap.put(lots.get(2), lotMap.getOrDefault(lots.get(2), 0) + 1)
-
-        val cnt = lotMap.values.max()
-        val keys = lotMap.filterKeys { lotMap.get(it) == cnt }
-        val key  = keys.keys.first()
-        when (cnt) {
-            3 -> return calcPrize1(key)
-            2 -> return calcPrize2(key)
-            else -> return calcPrize3(lotMap.keys.max())
-        }
+    val prize = when {
+        dice1 == dice2 && dice1 == dice3 -> 10000 + dice1 * 1000
+        dice1 == dice2 && dice2 != dice3 -> 1000 + dice1 * 100
+        dice1 != dice2 && dice2 == dice3 -> 1000 + dice2 * 100
+        dice1 == dice3 && dice2 != dice3 -> 1000 + dice3 * 100
+        else -> maxOf(dice1, dice2, dice3) * 100
     }
-
-    fun calcPrize1(num: Int) = 10_000 + num * 1_000
-
-    fun calcPrize2(num: Int) = 1000 + num * 100
-
-    fun calcPrize3(num: Int) = num * 100
-
+    println(prize)
 }
+
