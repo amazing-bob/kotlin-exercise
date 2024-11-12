@@ -21,22 +21,24 @@ package org.example.basic
  */
 
 class BJ_2480 {
-
     fun solve() = with(java.util.Scanner(System.`in`)) {
-    val dice1 = nextInt()
-    val dice2 = nextInt()
-    val dice3 = nextInt()
+        val dice1 = nextInt()
+        val dice2 = nextInt()
+        val dice3 = nextInt()
 
-    val prize = when {
-        dice1 == dice2 && dice1 == dice3 -> 10000 + dice1 * 1000
-        dice1 == dice2 && dice2 != dice3 -> 1000 + dice1 * 100
-        dice1 != dice2 && dice2 == dice3 -> 1000 + dice2 * 100
-        dice1 == dice3 && dice2 != dice3 -> 1000 + dice3 * 100
-        else -> maxOf(dice1, dice2, dice3) * 100
+        val prize = when {
+            dice1 == dice2 && dice1 == dice3 -> 10000 + dice1 * 1000
+            dice1 == dice2 && dice2 != dice3 -> 1000 + dice1 * 100
+            dice1 != dice2 && dice2 == dice3 -> 1000 + dice2 * 100
+            dice1 == dice3 && dice2 != dice3 -> 1000 + dice3 * 100
+            else -> maxOf(dice1, dice2, dice3) * 100
+        }
+        println(prize)
     }
-    println(prize)
 }
 
+fun main() {
+    BJ_2480().solve()
 }
 
 
