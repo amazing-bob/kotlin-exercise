@@ -8,7 +8,7 @@ fun main() {
 //    println("[2480]")
 //    BJ_2480().solve()
 
-    println("[1546]")
-    BJ_1546().solve()
+//    println("[1546]")
+//    BJ_1546().solve()
 
 }
